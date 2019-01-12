@@ -1,0 +1,79 @@
+US Airline Data
+========================================================
+author: Mat Fukuzawa
+date: 12-Jan-19
+autosize: true
+font-family: 'Helvetica'
+
+<style>
+.section .reveal .state-background {
+    background-image: url('airplane.png');
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+</style>
+
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+
+<style>
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+</style>
+
+Summary
+========================================================
+
+The app for this project is a comparison tool of the four major US airlines in the continental US, including American, Delta, Southwest, and United. After viewing the passenger data from 2013-2017, the user can select an airline and view the output of a linear regression model. The prediction for enplaned passengers in 2018 is also shown.  
+
+The app is divided into four tabs:
+- *README*: a help tab describing the basic functionality of the app
+- *Tab 1*: tabular airline passenger data and scatterplot
+- *Tab 2*: ploty scatterplot of airline passenger data
+- *Tab 3*: leaflet map showing domestic hubs
+
+Passenger Data
+========================================================
+class: small-code
+left: 50%
+<font size = 6em> The data for this app was consolidated into a `.csv` file from each of the four airline websites. Here is a plotly scatterplot of the passenger data from 2013-2017. The data is located at [link] (https://github.com/mfukuzawa/developingDataProductsProject/blob/master/airlines.csv). </font>
+
+
+```r
+library(plotly)
+library(dplyr)
+airlines <- read.csv("airlines.csv", header = T)
+airplot <- airlines %>% group_by(Airline) %>%
+          ggplot(aes(x = CY, y = Passengers, shape = Airline, color = Airline)) + geom_point(size = 3)
+```
+
+***
+
+```r
+airplot
+```
+
+![plot of chunk unnamed-chunk-2](week4pres-figure/unnamed-chunk-2-1.png)
+
+App Screenshot
+========================================================
+class: midcenter
+
+<div class = "midcenter" style="margin-left:-100px; margin-top:-300px;">
+<img src="apptab1.png" width = "700" height = "600"></img>
+</div>
+
+Links
+========================================================
+
+- Link to Shiny app: [Shiny Server] (https://mfukuzawa.shinyapps.io/airlineapp/)
+- Link to `app.R` code and data file on github: [GitHub Repo] (https://github.com/mfukuzawa/developingDataProductsProject)
